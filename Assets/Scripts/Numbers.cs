@@ -17,7 +17,8 @@ public class Numbers : MonoBehaviour
 
     private string levelPath;
     private int rowCounter = 1;
-    private List<Cell> AllCells;
+
+    private static List<Cell> AllCells = new List<Cell>();
 
     public GameObject inputFelder;
 
@@ -33,11 +34,10 @@ public class Numbers : MonoBehaviour
                 int number = (int)char.GetNumericValue(charNumber);
                 if (number != 0)
                 {
-                    AllCells.First(x => x.Column == alphabetList[columncounter] && x.Row == rowCounter).Value = number;
-                    var cell = AllCells.First(x => x.Column == alphabetList[columncounter] && x.Row == rowCounter);
-                    var cellInputField = cell.gameObject.GetComponent<InputField>();
+                    Cell cell = AllCells.First(x => x.Column == alphabetList[columncounter] && x.Row == rowCounter);
+                    InputField cellInputField = cell.gameObject.GetComponent<InputField>();
 
-                    //cell.Value = number;
+                    cell.Value = number;
                     cellInputField.text = cell.Value.ToString();
                     cellInputField.readOnly = true;
                 } 
@@ -47,9 +47,10 @@ public class Numbers : MonoBehaviour
         }
     }
 
-    public void ControlInput(Cell cell)
+    public void ControlInput(Cell changedCell)
     {
-        var cellText = cell.gameObject.GetComponent<InputField>().GetComponentInChildren<Text>();
+        Cell cell = AllCells.First(x => x.Row == changedCell.Row && x.Column == changedCell.Column);
+        Text cellText = cell.gameObject.GetComponent<InputField>().GetComponentInChildren<Text>();
         cell.Value = Convert.ToInt32(cellText.text);
 
         rowList.AddRange(AllCells.Where(x => x.Row == cell.Row).ToList());
@@ -64,6 +65,5 @@ public class Numbers : MonoBehaviour
         {
             cellText.color = new Color(0, 0, 0);
         }
-        AllCells = inputFelder.GetComponentsInChildren<Cell>().ToList();
     }
 }
