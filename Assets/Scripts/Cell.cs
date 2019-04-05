@@ -8,7 +8,8 @@ namespace Assets.Scripts
     {
         public string Column;
         public int Row;
-        public int? Value;
         public string Block;
+        public int Value = 0;
+        public bool IsCorrect = false;
     }
 }
