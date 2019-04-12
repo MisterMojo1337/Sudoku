@@ -11,5 +11,6 @@ namespace Assets.Scripts
         public string Block;
         public int Value = 0;
         public bool IsCorrect = false;
+        public bool IsPrescribed = false;
     }
 }
