@@ -16,9 +16,4 @@ public class GameMaster : MonoBehaviour
             won = true;
         }
     }
-
-    public void ChangeToLevelauswahl()
-    {
-        SceneManager.LoadScene("LevelSelect");
-    }
 }

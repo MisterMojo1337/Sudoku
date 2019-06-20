@@ -22,12 +22,13 @@ public class Numbers : MonoBehaviour
     public static List<Cell> AllCells;
 
     public GameObject inputFelder;
+    public static int sudokuInt;
 
     private void Start()
     {
         AllCells = new List<Cell>();
 
-        levelPath = Application.streamingAssetsPath + @"\" + "sudoku1" + ".txt";
+        levelPath = Application.streamingAssetsPath + $@"\sudoku{sudokuInt}.txt";
         AllCells = inputFelder.GetComponentsInChildren<Cell>().ToList();
         foreach (var row in File.ReadAllLines(levelPath).ToList())
         {
