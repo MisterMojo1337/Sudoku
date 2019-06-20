@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -12,5 +13,6 @@ namespace Assets.Scripts
         public int Value = 0;
         public bool IsCorrect = false;
         public bool IsPrescribed = false;
+        public List<Cell> InfluencedCells;
     }
 }
